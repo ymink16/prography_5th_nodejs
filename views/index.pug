@@ -1,5 +1,13 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  div(class="jumbotron")
+    h1 Todo App
+    if user
+
+    else
+      p(class="lead") 환영합니다. 로그인 후 사용해주세요!!
+      p
+        a(class="btn btn-lg btn-primary" href="/register" role="button") 회원가입 
+      p
+        a(class="btn btn-lg btn-primary" href="/login" role="button") 로그인 

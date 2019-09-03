@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  form(class="form-signin" action='/auth/register', method='post')
+    h2(class="form-signin-heading") 회 원 가 입
+    label(for="inputID" class="sr-only") ID
+    input(type="text" id="inputID" name="id" class="form-control" placeholder="ID" required autofocus)
+    label(for="inputPW" class="sr-only") Password
+    input(type="password" id="inputPW" name="password" class="form-control" placeholder="Password" required)
+    button(class="btn btn-lg btn-primary btn-block" type="submit") 회 원 가 입
