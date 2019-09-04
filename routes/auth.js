@@ -2,26 +2,21 @@ const express = require('express');
 const passport = require('passport');
 const bcrypt = require('bcrypt');
 const shortid = require('shortid');
+const db = require('../models/db');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
-
-const low = require('lowdb');
-const FileSync = require('lowdb/adapters/FileSync');
-const adapter = new FileSync('db.json');
-const db = low(adapter);
-db.defaults({users: []}).write();
 
 const router = express.Router();
 
 router.post('/register', isNotLoggedIn, async (req, res, next) => {
     const { email, password, password2, nickname } = req.body;
-    if (password !== password2) {
-        req.flash('joinError', '비밀번호를 확인해주세요.');
-        return res.redirect('/register');
-    }
     try {
-        const exUser = db.get('users').find({ email }).value();
+        const exUser = await db.get('users').find({ email }).value();
         if (exUser) {
             req.flash('joinError', '이미 가입된 이메일입니다.');
+            return res.redirect('/register');
+        }
+        if (password !== password2) {
+            req.flash('joinError', '비밀번호를 확인해주세요.');
             return res.redirect('/register');
         }
         const hash = await bcrypt.hash(password, 12);

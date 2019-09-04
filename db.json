@@ -1,10 +1,11 @@
 {
   "users": [
     {
-      "id": "wNyQmpY63",
+      "id": "lBxXmVIBg",
       "email": "ymink919@naver.com",
-      "password": "$2b$12$uXhC/OAJUGZg27iXYqFy5eUArjGBNz/B2rNudJloVC1tUSdsUeTDq",
+      "password": "$2b$12$iK/1m5hcaBO3QOnOGPL0cuWwUZ1t5Fu3TEwlNYoEcXHaahvb5tqZW",
       "nickname": "ym"
     }
-  ]
+  ],
+  "tasks": []
 }

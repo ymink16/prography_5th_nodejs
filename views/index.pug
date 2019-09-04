@@ -3,8 +3,9 @@ extends layout
 block content
   div(class="jumbotron")
     h1 Todo App
-    if user
-
+    if user && user.email
+      -const msg = '환영합니다. ' + user.nickname + '님'
+      p(class="lead")= msg
     else
       p(class="lead") 환영합니다. 로그인 후 사용해주세요!!
       p

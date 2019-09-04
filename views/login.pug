@@ -3,7 +3,9 @@ extends layout
 block content
   form(class="form-signin" action='/auth/login', method='post')
     h2(class="form-signin-heading") 로 그 인
-    input(type="text" name="email" class="form-control" placeholder="E-Mail" required autofocus)
+    input(type="email" name="email" class="form-control" placeholder="E-Mail" required autofocus)
     input(type="password" name="password" class="form-control" placeholder="Password" required)
     button(class="btn btn-lg btn-primary btn-block" type="submit") 로 그 인
+    if loginError
+      .error-message= loginError
       

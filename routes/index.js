@@ -3,7 +3,10 @@ const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
-  res.render('index', { title: '메인 페이지' });
+  res.render('index', { 
+    title: '메인 페이지',
+    user: req.user, 
+  });
 });
 
 router.get('/login', isNotLoggedIn, (req, res, next) => {

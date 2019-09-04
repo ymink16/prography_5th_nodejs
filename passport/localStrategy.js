@@ -1,10 +1,6 @@
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
-const low = require('lowdb');
-const FileSync = require('lowdb/adapters/FileSync');
-const adapter = new FileSync('db.json');
-const db = low(adapter);
-db.defaults({users: []}).write();
+const db = require('../models/db');
 
 module.exports = passport => {
     passport.use(new LocalStrategy({
@@ -12,8 +8,7 @@ module.exports = passport => {
         passwordField: 'password',
     }, async (email, password, done) => {
         try {
-            const exUser = db.get('users').find({ email }).value();
-            console.log(exUser);
+            const exUser = await db.get('users').find({ email: email }).value();
             if (exUser) {
                 const result = await bcrypt.compare(password, exUser.password);
                 if (result) {
