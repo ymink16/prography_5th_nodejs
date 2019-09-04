@@ -9,7 +9,7 @@ const passport = require('passport');
 require('dotenv').config();
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const authRouter = require('./routes/auth');
 const passportConfig = require('./passport');
 
 const app = express();
@@ -37,7 +37,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/auth', authRouter);
 
 app.use(function(req, res, next) {
   next(createError(404));
