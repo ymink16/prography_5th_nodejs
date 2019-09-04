@@ -2,13 +2,23 @@ extends layout
 
 block content
   div(class="jumbotron")
-    h1 Todo App
     if user && user.email
       -const msg = '환영합니다. ' + user.nickname + '님'
       p(class="lead")= msg
+      form(action="/task" method="post")
+        div(class="form-group")
+          input(type="text" class="form-control" name="content" placeholder="할 일을 입력하세요" required autofocus)
+          button(type="submit" class="btn btn-default") 등 록
     else
       p(class="lead") 환영합니다. 로그인 후 사용해주세요!!
-      p
+      p#register-btn
         a(class="btn btn-lg btn-primary" href="/register" role="button") 회원가입 
-      p
-        a(class="btn btn-lg btn-primary" href="/login" role="button") 로그인 
+      p#login-btn
+        a(class="btn btn-lg btn-primary" href="/login" role="button") 로그인
+  div
+    for task, index in tasks
+      form 
+        p= index
+        input(type="text" value= task.content readonly)
+        button(class="btn btn-default") 수 정
+        button(class="btn btn-default") 삭 제

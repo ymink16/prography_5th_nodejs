@@ -10,6 +10,7 @@ require('dotenv').config();
 
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
+const taskRouter = require('./routes/task');
 const passportConfig = require('./passport');
 
 const app = express();
@@ -38,6 +39,7 @@ app.use(passport.session());
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
+app.use('/task', taskRouter);
 
 app.use(function(req, res, next) {
   next(createError(404));

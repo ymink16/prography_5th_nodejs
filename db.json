@@ -5,7 +5,29 @@
       "email": "ymink919@naver.com",
       "password": "$2b$12$iK/1m5hcaBO3QOnOGPL0cuWwUZ1t5Fu3TEwlNYoEcXHaahvb5tqZW",
       "nickname": "ym"
+    },
+    {
+      "id": "yww1MBWYm",
+      "email": "ymink716@gmail.com",
+      "password": "$2b$12$NJWETmgwSU0Vk8qYOcEypuNj9NvYRrT6MPJTJVVvOwxvBdeRNl8QO",
+      "nickname": "calm"
     }
   ],
-  "tasks": []
+  "tasks": [
+    {
+      "id": "oqqxui0Fr",
+      "uid": "lBxXmVIBg",
+      "content": "잠자기"
+    },
+    {
+      "id": "2c5msSsiL",
+      "uid": "lBxXmVIBg",
+      "content": "자바스크립트 공부하기"
+    },
+    {
+      "id": "B5gdXTUup",
+      "uid": "lBxXmVIBg",
+      "content": "sdfsdfsdfs"
+    }
+  ]
 }
