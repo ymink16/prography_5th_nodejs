@@ -5,7 +5,7 @@ const { isLoggedIn } = require('./middlewares');
 
 const router = express.Router();
 
-// 할일 추가
+// 할 일 추가
 router.post('/', isLoggedIn, async (req, res, next) => {
     const { content } = req.body;
     const uid = req.user.id;
@@ -21,7 +21,7 @@ router.post('/', isLoggedIn, async (req, res, next) => {
     }
 });
 
-// 할일 수정
+// 할 일 수정
 router.patch('/:id/:content', isLoggedIn, async (req, res, next) => {
     try {
         db.get('tasks')
@@ -35,7 +35,7 @@ router.patch('/:id/:content', isLoggedIn, async (req, res, next) => {
     }
 });
 
-// 할일 삭제
+// 할 일 삭제
 router.delete('/:id', isLoggedIn, async (req, res, next) => {
     const id = req.params.id;
     try {
