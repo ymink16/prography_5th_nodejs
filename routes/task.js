@@ -22,9 +22,8 @@ router.post('/', isLoggedIn, async (req, res, next) => {
 });
 
 // 할일 수정
-router.patch('/:id/:content', async (req, res, next) => {
+router.patch('/:id/:content', isLoggedIn, async (req, res, next) => {
     try {
-        //const content = req.body.content;
         db.get('tasks')
                 .find({ id: req.params.id })
                 .assign({ "content": req.params.content })
@@ -37,7 +36,7 @@ router.patch('/:id/:content', async (req, res, next) => {
 });
 
 // 할일 삭제
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', isLoggedIn, async (req, res, next) => {
     const id = req.params.id;
     try {
         await db.get('tasks').remove({ id }).write();

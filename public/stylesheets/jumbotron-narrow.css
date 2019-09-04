@@ -47,8 +47,8 @@ body {
     border-bottom: 1px solid #e5e5e5;
   }
   .jumbotron .btn {
-    padding: 14px 24px;
-    font-size: 21px;
+    padding: 6px 12px;
+    font-size: 15px;
   }
   
   /* Supporting marketing content */
@@ -111,4 +111,28 @@ body {
     margin-bottom: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+  }
+  #tasks-header {
+    text-align: center;
+  }
+  #tasks-list {
+    text-align: center;
+  }
+  #addTask {
+    overflow: hidden;
+  }
+  #addTask-input {
+    width: 500px;
+    float: left;
+    margin: 0;
+  }
+  #addTask-button {
+    margin: 0;
+  }
+
+  .task-content {
+    width: 300px;
+    height: 32px;
+    margin-right: 20px;
+    margin-bottom: 10px;
   }
