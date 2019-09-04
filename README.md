@@ -29,6 +29,6 @@
 * users : {id,  email, password, nickname}
 * tasks : {id, uid, content}
 
-
+### 사용 : npm start -> localhost:3000 접속
 
 
