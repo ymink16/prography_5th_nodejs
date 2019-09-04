@@ -15,10 +15,66 @@ block content
         a(class="btn btn-lg btn-primary" href="/register" role="button") 회원가입 
       p#login-btn
         a(class="btn btn-lg btn-primary" href="/login" role="button") 로그인
-  div
-    for task, index in tasks
-      form 
-        p= index
-        input(type="text" value= task.content readonly)
-        button(class="btn btn-default") 수 정
-        button(class="btn btn-default") 삭 제
+  #tasks-container
+    #tasks-header  
+      h3 Task List
+    #tasks-list
+      for task, index in tasks
+        -const formID = 'taskform-' + index
+        -const taskID = 'task-' + index
+        -const contentID = 'content-' + index
+        -const updateID = 'update-' + index
+        -const deleteID = 'delete-' + index
+        form(id= formID class="task-list")
+          input(id= taskID type="hidden" name="id" value= task.id)
+          input(id= contentID type="text" name= "content" value= task.content readonly)
+          button(id= updateID class="btn btn-default") 수 정
+          button(id= deleteID class="btn btn-default") 삭 제
+  script.
+    function addBtnEvent() {
+      const taskForms = document.getElementsByClassName('task-list');
+
+      // 수정, 삭제 버튼 이벤트 등록
+      for (let i = 0; i < taskForms.length; i++) {
+        const updateBtnId = 'update-'+ i;
+        const deleteBtnId = 'delete-' + i;
+
+        const updateBtn = document.getElementById(updateBtnId);
+        const deleteBtn = document.getElementById(deleteBtnId);
+        const hiddenInput = document.getElementById('task-' + i);
+        const taskID = hiddenInput.value;
+
+        updateBtn.addEventListener('click', event => {
+          event.preventDefault();
+        });
+        deleteBtn.addEventListener('click', event => {
+          event.preventDefault();
+          const xhr = new XMLHttpRequest();
+          const url = '/task/' + taskID;
+          xhr.open('DELETE', url);
+          xhr.onload = function () {
+            if (xhr.status === 200) {
+              location.reload();
+            } else {
+              console.error(xhr.responseText);
+            }
+          };
+          xhr.send();
+        });
+      };
+    }
+
+    function deleteTask(taskID) {
+      
+    }
+
+    function updateTask(event) {
+        
+    }
+
+    window.onload = function() {
+        addBtnEvent();
+    }
+
+
+ 

@@ -33,8 +33,10 @@ router.patch('/:id', async (req, res, next) => {
 
 // 할일 삭제
 router.delete('/:id', async (req, res, next) => {
+    const id = req.params.id;
     try {
-        
+        await db.get('tasks').remove({ id }).write();
+        res.send('OK');
     } catch (error) {
         console.error(error);
         next(error);
