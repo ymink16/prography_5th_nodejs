@@ -27,30 +27,41 @@ block content
         -const deleteID = 'delete-' + index
         form(id= formID class="task-list")
           input(id= taskID type="hidden" name="id" value= task.id)
-          input(id= contentID type="text" name= "content" value= task.content readonly)
+          input(id= contentID type="text" value= task.content readOnly)
           button(id= updateID class="btn btn-default") 수 정
           button(id= deleteID class="btn btn-default") 삭 제
   script.
     function addBtnEvent() {
       const taskForms = document.getElementsByClassName('task-list');
 
-      // 수정, 삭제 버튼 이벤트 등록
       for (let i = 0; i < taskForms.length; i++) {
         const updateBtnId = 'update-'+ i;
         const deleteBtnId = 'delete-' + i;
+        const contentId = 'content-' + i;
 
         const updateBtn = document.getElementById(updateBtnId);
         const deleteBtn = document.getElementById(deleteBtnId);
-        const hiddenInput = document.getElementById('task-' + i);
-        const taskID = hiddenInput.value;
+        const contentInput = document.getElementById(contentId);
+        const taskID = document.getElementById('task-' + i).value;
+        
+        const url = '/task/' + taskID;
 
         updateBtn.addEventListener('click', event => {
           event.preventDefault();
+          const content = prompt('바꿀 내용을 입력하세요');
+          if (!content) return alert('내용을 반드시 입력하셔야 합니다');
+          const xhr = new XMLHttpRequest();
+          xhr.onload = function () {
+            if (xhr.status === 200 || xhr.status === 201) location.href = '/';
+            else console.error(xhr.responseText);
+          };
+          xhr.open('PATCH', `/task/${taskID}/${content}`);
+          xhr.send();
         });
+
         deleteBtn.addEventListener('click', event => {
           event.preventDefault();
           const xhr = new XMLHttpRequest();
-          const url = '/task/' + taskID;
           xhr.open('DELETE', url);
           xhr.onload = function () {
             if (xhr.status === 200) {
@@ -62,14 +73,6 @@ block content
           xhr.send();
         });
       };
-    }
-
-    function deleteTask(taskID) {
-      
-    }
-
-    function updateTask(event) {
-        
     }
 
     window.onload = function() {

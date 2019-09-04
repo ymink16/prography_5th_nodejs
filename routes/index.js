@@ -26,8 +26,6 @@ router.get('/', async (req, res, next) => {
     console.error(error);
     next(error);
   }
-
-  
 });
 
 router.get('/login', isNotLoggedIn, (req, res, next) => {
@@ -47,3 +45,4 @@ router.get('/register', isNotLoggedIn, (req, res, next) => {
 });
 
 module.exports = router;
+

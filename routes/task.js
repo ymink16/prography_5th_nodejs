@@ -22,9 +22,14 @@ router.post('/', isLoggedIn, async (req, res, next) => {
 });
 
 // 할일 수정
-router.patch('/:id', async (req, res, next) => {
+router.patch('/:id/:content', async (req, res, next) => {
     try {
-        
+        //const content = req.body.content;
+        db.get('tasks')
+                .find({ id: req.params.id })
+                .assign({ "content": req.params.content })
+                .write();
+        res.send('OK');
     } catch (error) {
         console.error(error);
         next(error);
